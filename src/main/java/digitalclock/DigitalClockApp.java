@@ -4,6 +4,10 @@ import java.awt.Canvas;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -26,7 +30,26 @@ public class DigitalClockApp extends JFrame{
 		this.setVisible(true);
 		Graphics g = canvas.getGraphics();
 		g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 28));
-		g.drawChars("09:00:00".toCharArray(), 0, 8, 20, 24);
+		
+		Timer timer = new Timer();
+		timer.schedule(new TextUpdateTimer(g), 0, 1000);
 	}
 
+	class TextUpdateTimer extends TimerTask{
+
+		private Graphics g;
+		
+		public TextUpdateTimer(Graphics g) {
+			this.g = g;
+		}
+		
+		@Override
+		public void run() {
+			LocalDateTime date = LocalDateTime.now();
+			g.clearRect(0, 0, 180, 80);
+			g.drawChars(date.format(DateTimeFormatter.ofPattern("HH:mm:ss")).toString().toCharArray(), 0, 8, 20, 24);
+		}
+		
+	}
+	
 }
