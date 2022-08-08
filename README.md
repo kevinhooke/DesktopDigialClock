@@ -1,7 +1,7 @@
-# DesktopDigialClock
+# DesktopDigitalClock
 This is a simple digital clock app that just displays the current time with large digits.
 
-I needed a clock app that just diplayed the current time to help with debugging some time based tasks, and while
+I needed a clock app that just displayed the current time to help with debugging some time based tasks, and while
 there's plenty of clock apps, I thought I'd create my own to add some other specific features that would be useful.
 
 Potential features to be added later:
